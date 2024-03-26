@@ -29,9 +29,11 @@ jobs:
         java-version: '21'
 
     - name: Build Quarkus application
+      working-directory: users
       run: |
-        ./users/mvnw clean package -DskipTests
+        ./mvnw clean package -DskipTests
 
     - name: Run tests
+      working-directory: users
       run: |
-        ./users/mvnw test
+        ./mvnw test
