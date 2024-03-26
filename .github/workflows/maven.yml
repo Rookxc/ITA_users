@@ -22,7 +22,7 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v3
       with:
-        path: Events
+        path: users
 
     - name: Set up Java
       uses: actions/setup-java@v3
@@ -32,10 +32,10 @@ jobs:
 
     - name: Build Quarkus application
       run: |
-        cd Events/Events
+        cd users
         ./mvnw clean package -DskipTests
 
     - name: Run tests
       run: |
-        cd Events/Events
+        cd users
         ./mvnw test
