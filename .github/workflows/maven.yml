@@ -1,29 +1,28 @@
-name: Run Unit Tests
+name: Java CI with Maven
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
   pull_request:
-    branches:
-      - main
+    branches: [ main ]
 
 jobs:
-  unit-tests:
-    name: Run Unit Tests
+  build:
     runs-on: ubuntu-latest
     
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-      
-      - name: Set up Java
-        uses: actions/setup-java@v2
-        with:
-          java-version: '21' # Adjust the Java version as needed
-          distribution: 'adopt'
-      
-      - name: Build with Maven
-        run: |
-          cd users
-          ./mvnw test
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Set up Java
+      uses: actions/setup-java@v2
+      with:
+        java-version: '21'
+
+    - name: Grant execute permission to Maven wrapper
+      run: chmod +x mvnw
+      working-directory: users
+
+    - name: Build and test
+      run: ./mvnw test
+      working-directory: users
