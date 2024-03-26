@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+option java_multiple_files = true;
+option java_package = "com.example";
+option java_outer_classname = "UsersGrpcProto";
+
+service UserService {
+  rpc CreateUser (CreateUserRequest) returns (UserResponse) {}
+  rpc GetUser (GetUserRequest) returns (UserResponse) {}
+}
+
+message CreateUserRequest {
+  string name = 1;
+  int32 age = 2;
+}
+
+message GetUserRequest {
+  string id = 1;
+}
+
+message UserResponse {
+  string id = 1;
+  string name = 2;
+  int32 age = 3;
+}
