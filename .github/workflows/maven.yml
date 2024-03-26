@@ -32,6 +32,7 @@ jobs:
 
     - name: Build Quarkus application
       run: |
+        cd users
         ./mvnw clean package -DskipTests
 
     - name: Run tests
